@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html
+        xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:th="https://www.thymeleaf.org"
+        lang="en">
+<head>
+    <title>Registration page</title>
+
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+    <script type="text/javascript" th:src="@{/js/bootstrap.bundle.min.js}"></script>
+</head>
+
+<body>
+
+<div class="p-3 container">
+    <h1>Registration page</h1>
+
+    <form class="py-3" th:action="@{/registration}" th:object="${user}" method="post">
+        <div th:if="${#fields.hasErrors('global')}">
+            <p th:each="err : ${#fields.errors('global')}" th:text="${err}" class="text-danger"/>
+        </div>
+
+        <div>
+            <label class="form-label">User Name:
+                <input class="form-control" type="text" th:field="*{username}"/>
+            </label>
+            <p th:if="${#fields.hasErrors('username')}" th:class="text-danger" th:errors="*{username}"></p>
+        </div>
+
+        <div>
+            <label class="form-label">Password:
+                <input class="form-control" type="password" th:field="*{password}" id="password"/>
+            </label>
+            <p th:if="${#fields.hasErrors('password')}" th:class="text-danger" th:errors="*{password}"></p>
+        </div>
+
+        <div><input class="btn btn-primary" type="submit" value="Sign In"/></div>
+
+    </form>
+</div>
+
+</body>
+</html>

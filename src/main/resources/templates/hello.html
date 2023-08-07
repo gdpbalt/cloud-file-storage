@@ -1,12 +1,25 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<html
+        xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:th="https://www.thymeleaf.org"
+        xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6"
+        lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Hello page</title>
+    <title>Inner page</title>
+
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+    <script type="text/javascript" th:src="@{/js/bootstrap.bundle.min.js}"></script>
 </head>
+
 <body>
 
-<h1 th:text="${welcome}" />
+<div class="container">
+    <h1>Hello <span sec:authentication="name" th:remove="tag">unknown</span> !!!</h1>
+
+    <form th:action="@{/logout}" method="post">
+        <input class="btn btn-primary" type="submit" value="Sign Out"/>
+    </form>
+</div>
 
 </body>
 </html>
