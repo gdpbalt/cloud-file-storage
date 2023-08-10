@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org" lang="en">
+
+<head th:replace="fragments/header.html :: html_head (title = 'Welcome page')">
+    <title></title>
+</head>
+
+<body>
+
+<div th:replace="fragments/header.html :: navbar"></div>
+
+<div class="container">
+    <h2 class="px-1">Welcome to the education project: <strong th:text="#{app.name}"/></h2>
+
+    <p class="px-1">The goal of the project is to create the system to work with files and folders.
+        They stores in network cloud storage and have interface to manage them.</p>
+
+    <p class="px-1">For working with the system you need to register and login.</p>
+
+    <p class="px-1">The source of the task I found
+        <a class="link-info"
+           href="https://zhukovsd.github.io/java-backend-learning-course/Projects/CloudFileStorage/">here</a>
+    </p>
+</div>
+
+<div th:replace="fragments/footer.html :: footer"></div>
+
+</body>
+</html>

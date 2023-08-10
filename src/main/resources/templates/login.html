@@ -1,48 +1,49 @@
 <!DOCTYPE html>
-<html
-        xmlns="http://www.w3.org/1999/xhtml"
-        xmlns:th="https://www.thymeleaf.org"
-        lang="en">
-<head>
-    <title>Authentication page</title>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org" lang="en">
 
-    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
-    <script type="text/javascript" th:src="@{/js/bootstrap.bundle.min.js}"></script>
+<head th:replace="fragments/header.html :: html_head (title = 'Authentication page')">
+    <title></title>
 </head>
 
 <body>
 
-<div class="p-3 container">
-    <h1>Authentication page</h1>
+<div th:replace="fragments/header.html :: navbar"></div>
 
-    <div th:if="${param.error}">
+<div class="container">
+    <h2>Authentication page</h2>
+
+    <div class="py-1" th:if="${param.error}">
         <span class="alert-danger">Invalid username or password.</span>
     </div>
 
-    <div th:if="${param.logout}">
-        You have been logged out. You can register <a th:href="@{/registration}">here</a>
+    <div class="py-1" th:if="${param.logout}">
+        You have been logged out
     </div>
 
-    <form class="py-3" th:action="@{/login}" method="post">
-        <div>
+    <form th:action="@{/login}" method="post">
+        <div class="py-1">
             <label class="form-label">User Name:
                 <input class="form-control" type="text" name="username"/>
             </label>
         </div>
 
-        <div>
+        <div class="py-1">
             <label class="form-label">Password:
                 <input class="form-control" type="password" name="password"/>
             </label>
         </div>
 
-        <div>
-            You can register <a th:href="@{/registration}">here</a>
+        <div class="py-1">
+            You can register <a class="link-dark" th:href="@{/registration}">here</a>
         </div>
 
-        <div><input class="btn btn-primary" type="submit" value="Sign In"/></div>
+        <div class="py-1">
+            <input class="btn btn-primary" type="submit" value="Sign In"/>
+        </div>
     </form>
 </div>
+
+<div th:replace="fragments/footer.html :: footer"></div>
 
 </body>
 </html>

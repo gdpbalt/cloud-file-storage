@@ -4,7 +4,6 @@ import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.security.authentication.AuthenticationManager
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder
-import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity
 import org.springframework.security.config.annotation.web.builders.HttpSecurity
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
@@ -14,7 +13,6 @@ import javax.sql.DataSource
 
 @Configuration
 @EnableWebSecurity
-@EnableGlobalMethodSecurity(prePostEnabled = true)
 class SecurityConfig(
     private val dataSource: DataSource,
 ) {
@@ -34,12 +32,13 @@ class SecurityConfig(
     fun filterChain(http: HttpSecurity): SecurityFilterChain =
         http
             .authorizeRequests()
-            .antMatchers("/css/**", "/js/**", "/", "/home", "/hello", "/registration").permitAll()
+            .antMatchers("/css/**", "/js/**").permitAll()
+            .antMatchers("/", "/welcome", "/registration", "/error").permitAll()
             .anyRequest().authenticated()
             .and()
-            .formLogin().loginPage("/login").permitAll()
+            .formLogin().loginPage("/login").defaultSuccessUrl("/inner", true).permitAll()
             .and()
-            .logout().permitAll()
+            .logout().logoutSuccessUrl("/welcome")
             .and()
             .build()
 

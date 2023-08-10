@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6" lang="en">
+
+<head th:fragment="html_head (title)">
+    <title th:text="${title}"></title>
+
+    <meta charset="UTF-8"/>
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+    <script type="text/javascript" th:src="@{/js/bootstrap.bundle.min.js}"></script>
+</head>
+
+<body>
+
+<header th:fragment="navbar">
+    <nav class="navbar fixed-top navbar-expand-lg bg-dark navbar-dark">
+        <div class="container-fluid">
+            <div>
+                <ul class="navbar-nav">
+                    <li class="navbar-brand" th:text="#{app.name}"/>
+                    <li><a class="nav-link" th:href="@{/welcome}">Home</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <ul class="navbar-nav">
+                    <th:block sec:authorize="isAuthenticated()">
+                        <li class="nav-link">Current user is <span sec:authentication="name"
+                                                                   th:remove="tag">unknown</span>
+                        </li>
+                    </th:block>
+                </ul>
+            </div>
+
+            <div>
+                <ul class="navbar-nav">
+                    <th:block sec:authorize="isAnonymous()">
+                        <li><a class="nav-link" th:href="@{/registration}">Registration</a></li>
+                        <li><a class="nav-link" th:href="@{/login}">Login</a></li>
+                    </th:block>
+
+                    <th:block sec:authorize="isAuthenticated()">
+                        <li>
+                            <a class="nav-link" href="#" onclick="document.getElementById('logout-form').submit();">Logout</a>
+                        </li>
+                    </th:block>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="pt-4 mt-5">
+        <form id="logout-form" th:action="@{/logout}" method="post">
+        </form>
+    </div>
+</header>
+
+</body>
+</html>
