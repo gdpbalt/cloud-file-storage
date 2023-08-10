@@ -12,6 +12,5 @@ class WebConfig: WebMvcConfigurer {
         registry.addViewController("/welcome").setViewName("welcome")
         registry.addViewController("/").setViewName("welcome")
         registry.addViewController("/inner").setViewName("inner")
-        registry.addViewController("/login").setViewName("login")
     }
 }

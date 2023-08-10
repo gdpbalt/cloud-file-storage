@@ -22,8 +22,7 @@ class UserService(
         }
         val userEntity = UserEntity(
             username = userDto.username,
-            password = passwordEncoder.encode(userDto.password),
-            active = true,
+            password = passwordEncoder.encode(userDto.password)
         )
         return userRepository.save(userEntity)
     }

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6" lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6" lang="en">
 
 <head th:fragment="html_head (title)">
     <title th:text="${title}"></title>
@@ -17,15 +18,22 @@
             <div>
                 <ul class="navbar-nav">
                     <li class="navbar-brand" th:text="#{app.name}"/>
-                    <li><a class="nav-link" th:href="@{/welcome}">Home</a></li>
+
+                    <th:block sec:authorize="isAnonymous()">
+                        <li><a class="nav-link" th:href="@{/welcome}">Home</a></li>
+                    </th:block>
+
+                    <th:block sec:authorize="isAuthenticated()">
+                        <li><a class="nav-link" th:href="@{/inner}">Home</a></li>
+                    </th:block>
                 </ul>
             </div>
 
             <div>
                 <ul class="navbar-nav">
                     <th:block sec:authorize="isAuthenticated()">
-                        <li class="nav-link">Current user is <span sec:authentication="name"
-                                                                   th:remove="tag">unknown</span>
+                        <li class="nav-link">
+                            Current user is <span sec:authentication="name" th:remove="tag">unknown</span>
                         </li>
                     </th:block>
                 </ul>
