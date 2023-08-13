@@ -1,5 +1,6 @@
-package im.getmansky.cloudfilestorage.service
+package im.getmansky.cloudfilestorage.service.security
 
+import im.getmansky.cloudfilestorage.service.UserService
 import org.springframework.security.core.userdetails.User
 import org.springframework.security.core.userdetails.UserDetails
 import org.springframework.security.core.userdetails.UserDetailsService
