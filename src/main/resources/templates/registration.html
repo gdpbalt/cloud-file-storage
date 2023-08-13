@@ -18,20 +18,27 @@
         </div>
 
         <div class="py-1">
-            <label class="form-label">User Name:
-                <input class="form-control" type="text" th:field="*{username}"/>
+            <label class="form-label col-6">User Name:
+                <input class="form-control" type="text" th:field="*{username}" autofocus/>
             </label>
             <p th:if="${#fields.hasErrors('username')}" th:class="text-danger" th:errors="*{username}"></p>
         </div>
 
         <div class="py-1">
-            <label class="form-label">Password:
-                <input class="form-control" type="password" th:field="*{password}" id="password"/>
+            <label class="form-label col-6">Password:
+                <input class="form-control" type="password" th:field="*{password}"/>
             </label>
             <p th:if="${#fields.hasErrors('password')}" th:class="text-danger" th:errors="*{password}"></p>
         </div>
 
         <div class="py-1">
+            <label class="form-label col-6">Password repeat:
+                <input class="form-control" type="password" th:field="*{passwordRepeat}"/>
+            </label>
+            <p th:if="${#fields.hasErrors('passwordRepeat')}" th:class="text-danger" th:errors="*{passwordRepeat}"></p>
+        </div>
+
+        <div class="py-1 pt-3">
             <input class="btn btn-primary" type="submit" value="Registration"/>
         </div>
     </form>

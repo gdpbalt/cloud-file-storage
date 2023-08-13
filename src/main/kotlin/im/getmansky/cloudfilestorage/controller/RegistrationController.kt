@@ -1,6 +1,6 @@
 package im.getmansky.cloudfilestorage.controller
 
-import im.getmansky.cloudfilestorage.model.dto.request.UserDto
+import im.getmansky.cloudfilestorage.model.dto.request.UserRegistrationDto
 import im.getmansky.cloudfilestorage.service.UserService
 import org.springframework.stereotype.Controller
 import org.springframework.ui.Model
@@ -20,12 +20,12 @@ class RegistrationController(
 
     @GetMapping
     fun registration(model: Model): String {
-        model.addAttribute("user", UserDto())
+        model.addAttribute("user", UserRegistrationDto())
         return "registration"
     }
 
     @PostMapping
-    fun addUser(@ModelAttribute("user") @Valid user: UserDto, result: BindingResult, model: Model): String {
+    fun addUser(@ModelAttribute("user") @Valid user: UserRegistrationDto, result: BindingResult, model: Model): String {
         if (result.hasErrors()) {
             return "registration"
         }

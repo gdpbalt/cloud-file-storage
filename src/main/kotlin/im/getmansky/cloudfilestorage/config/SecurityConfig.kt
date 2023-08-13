@@ -29,8 +29,7 @@ class SecurityConfig(
         http
             .authorizeHttpRequests { requests ->
                 requests
-                    .antMatchers("/css/**", "/js/**").permitAll()
-                    .antMatchers("/", "/welcome", "/registration", "/error").permitAll()
+                    .antMatchers("/css/**", "/js/**", "/", "/welcome", "/registration", "/error").permitAll()
                     .anyRequest().authenticated()
             }
             .formLogin { form ->
